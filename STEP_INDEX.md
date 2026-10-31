@@ -24,7 +24,7 @@ Kaggle notebooks `pilot/sp10_run2_data.ipynb` (download + poses of the clips tha
 `docs/analysis_plan_rtm.md`: frozen plan (2026-10-19), v2 deviation (2026-10-20), confirmatory seed (2026-10-21, hash d65e325d).
 
 ## Step 7. Training cells (Kaggle)
-Round B and pretrained seed 0: `e2_rtm_cell.py` (+ `stgcn_uni.py`, `rtm_data.py`). Round C and later seeds: `e3_rtm_cell.py`. Every run folder in `e2_outputs/` has the per-cell scores; the first Round C run also has the scaling sweep and `scale_choice.json`. The saved translations and test-clip lists are not included.
+Round B and pretrained seed 0: `e2_rtm_cell.py` (+ `rtm_data.py`; the Uni-Sign encoder file `stgcn_uni.py` it imports is not included, see README). Round C and later seeds: `e3_rtm_cell.py`. Every run folder in `e2_outputs/` has the per-cell scores; the first Round C run also has the scaling sweep and `scale_choice.json`. The saved translations and test-clip lists are not included.
 
 ## Step 8. Scoring
 chrF and BLEU (sacreBLEU) are computed inside the cell. BLEURT-20-D12: `score_bleurt.py` (all cells), `score_nn_bleurt.py`, `score_random_bleurt.py` -> `rtm_analysis/rtm_bleurt_cells.json`, `rtm_nn_bleurt.json`, `rtm_random_bleurt.json`.

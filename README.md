@@ -22,3 +22,6 @@ We use SP-10, a corpus of ten sign languages signing the same English sentences.
    * `MANIFEST_SHA256.txt`: checksum of every file.
 
 The SP-10 videos, poses and sentences are not included; SP-10 is available from its authors (Yin et al., 2022, github.com/MLSLT/SP-10). SP-10, RTMPose, Uni-Sign and T5 have their own terms.
+
+The pretrained-encoder arm (`e2_rtm_cell.py`, `e3_rtm_cell.py`) imports `stgcn_uni.py`, which adapts the ST-GCN pose encoder of Uni-Sign (Li et al., 2025; github.com/ZechengLi19/Uni-Sign) and is not included here. To re-run that arm, take `stgcn_layers/gcn_utils.py` and `stgcn_layers/stgcn_block.py` from the Uni-Sign repository and the released checkpoint (CC-BY-NC-4.0, non-commercial use).
+
