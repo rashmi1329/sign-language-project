@@ -24,7 +24,7 @@ Kaggle notebooks `pilot/sp10_run2_data.ipynb` (download + poses of the clips tha
 `docs/analysis_plan_rtm.md`: frozen plan (2026-10-19), v2 deviation (2026-10-20), confirmatory seed (2026-10-21, hash d65e325d).
 
 ## Step 7. Training cells (Kaggle)
-Round B and pretrained seed 0: `e2_rtm_cell.py` (+ `stgcn_uni.py`, `rtm_data.py`). Round C and later seeds: `e3_rtm_cell.py`. Every run folder in `e2_outputs/` has the per-cell scores; the first Round C run also has the scaling sweep and `scale_choice.json`. The saved translations and test-clip lists are not included (see README).
+Round B and pretrained seed 0: `e2_rtm_cell.py` (+ `stgcn_uni.py`, `rtm_data.py`). Round C and later seeds: `e3_rtm_cell.py`. Every run folder in `e2_outputs/` has the per-cell scores; the first Round C run also has the scaling sweep and `scale_choice.json`. The saved translations and test-clip lists are not included.
 
 ## Step 8. Scoring
 chrF and BLEU (sacreBLEU) are computed inside the cell. BLEURT-20-D12: `score_bleurt.py` (all cells), `score_nn_bleurt.py`, `score_random_bleurt.py` -> `rtm_analysis/rtm_bleurt_cells.json`, `rtm_nn_bleurt.json`, `rtm_random_bleurt.json`.
@@ -37,3 +37,14 @@ chrF and BLEU (sacreBLEU) are computed inside the cell. BLEURT-20-D12: `score_bl
 
 ## Step 11. Recomputing Table 3, the R^2 values and the secondary numbers
 `verify_headline_numbers.py` and `verify_secondary_numbers.py` recompute them from the per-cell files and print them next to the paper's values.
+
+## Rounds in the paper and where they come from
+
+| Round | Poses | Cell code | Result folder |
+|---|---|---|---|
+| A | MediaPipe, all clips | `e2_cell.py` (+ `pilot/pilot_pipeline_slim2.py`, `pilot/sp10_driver_seedfix.py`) | `e2_outputs/scratch_s0/` |
+| B | RTMPose, cleaned, 60 epochs | `e2_rtm_cell.py` | `e2_outputs/rtm_scratch_a/`, `rtm_scratch_b_k/` |
+| C seed 0 | RTMPose, 100 epochs, z-score | `e3_rtm_cell.py` | `e2_outputs/rtm2_s1_c/`, `rtm2_s2_c/` |
+| C seed 1 (confirmatory) | same | `e3_rtm_cell.py` | `e2_outputs/rtm2_sa_a/`, `rtm2_sb_b_k/`, `rtm2_sc_c/` |
+| Pretrained arm seed 0 / control seed 0 | RTMPose, Uni-Sign ST-GCN | `e2_rtm_cell.py` | `e2_outputs/rtm_uni_a/`, `rtm_uni_b_k/` |
+| Pretrained seeds 1, 2, 3 / control seed 1 | same | `e3_rtm_cell.py` | `e2_outputs/rtm2_ua_c/`, `rtm2_uc_c/` (and `rtm2_uc_a/`, an independent replicate run of seed 2 on a second account: it is the same-seed rerun in the paper and is not mixed into the seed-2 cells), `rtm2_ub_c/`, `rtm2_ud_c/` |

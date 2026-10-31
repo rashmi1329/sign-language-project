@@ -1,51 +1,24 @@
-# Code and raw results for "Target Effects and Kinematic Similarity in Sign Language Transfer Matrices"
+# Target Effects and Kinematic Similarity in Sign Language Transfer Matrices
 
-Kulkarni, Pathania, Suhasini S. (Vellore Institute of Technology, Chennai). Manuscript submitted to Scientific Reports.
+Code and saved results for the paper by Kulkarni, Pathania and Suhasini S. (Vellore Institute of Technology, Chennai), submitted to Scientific Reports.
 
-This folder contains the code and the saved outputs behind the tables, figures and numbers of the manuscript. `PROVENANCE_MAP.md` says, for each one, which script and which file it comes from and whether it can be re-checked from this copy. It was assembled on 2026-10-31 by **copying** files out of the working project folder; nothing in the project was moved or deleted, and no git command has been run.
+## What the project is about
 
-## Start here
+Sign-language translation models are normally trained one language at a time. This project asks whether a sign language that *moves* more like another one transfers better to it.
 
-| File | What it is |
-|---|---|
-| `PROVENANCE_MAP.md` | Every table, figure and quoted number of the paper -> script -> raw file -> how it was checked |
-| `STEP_INDEX.md` | The pipeline step by step, with the files of each step and the order they ran in |
-| `MANIFEST_SHA256.txt` | SHA-256 and size of every file in this folder |
+We use SP-10, a corpus of ten sign languages signing the same English sentences. For each language we train a small pose-to-English model (a pose encoder feeding T5-small). We then start from each language's model and train it on every other language, which gives 90 ordered source-to-target pairs. The gain of a pair is the target's score after transfer minus the score of the target's own model. Each pair also gets a kinematic distance between the two languages' pose trajectories (masked DTW, called S1). The question is whether that distance predicts the gain. It is tested with a pooled permutation test over three training rounds (MediaPipe poses, RTMPose poses, and an RTMPose confirmatory run with a second seed) and with a pretrained Uni-Sign encoder arm. The results are in the paper; this repository holds the code and per-run outputs behind its numbers.
 
-## What can be re-run without any data
+## How to read this repository
 
-Run from `pilot/sp10_full_rerun/` (Python 3 with numpy and scipy):
+1. **`PROVENANCE_MAP.md`**: every table, figure and quoted number of the paper, with the script that produces it, the raw file it reads, and how it was checked.
+2. **`STEP_INDEX.md`**: the pipeline in order, from data to figures, and which result folder belongs to which round.
+3. **Where things are:**
+   * `pilot/sp10_full_rerun/`: the scripts (training-cell code `e2_*` / `e3_*`, pose processing `rtm_*`, statistics and checks).
+   * `pilot/sp10_full_rerun/e2_outputs/`: per-cell scores, one folder per run.
+   * `pilot/sp10_full_rerun/rtm_analysis/`: outputs of the statistics scripts.
+   * `pilot/`: Round A (MediaPipe) code and notebooks.
+   * `docs/analysis_plan_rtm.md`: the analysis plan fixed before the RTMPose runs.
+   * `make_paper_figures.py` and `paper_figures_as_in_manuscript/`: the figures.
+   * `MANIFEST_SHA256.txt`: checksum of every file.
 
-```
-python3 verify_headline_numbers.py     # Tables 3-5 and the R^2 values, recomputed from the raw per-cell files (44 numbers)
-python3 verify_secondary_numbers.py    # same-seed rerun, seed noise, pretrained vs control, copy rates, framing check, Round A S1
-python3 analyze_rtm.py; python3 analyze_rtm2.py; python3 target_adjusted.py; python3 seed1_confirmatory.py primary   # the project's own analysis scripts
-python3 roundA_tests.py; python3 holm_family.py; python3 power_general.py
-cd ../.. && python3 make_paper_figures.py   # regenerates the figures into paper_figures/
-```
-
-The first two scripts recompute the paper's headline numbers directly from the per-cell result files and print them next to the values in the paper. The other scripts are the project's own analysis scripts and rewrite the files in `rtm_analysis/`.
-
-## What is not here, and why
-
-* **Pose arrays** (`rtm_std_*.npz`, MediaPipe `poses_*.npz`, the extracted RTMPose files): derived from SP-10 videos hosted by Spreadthesign; large, and redistribution terms have not been cleared. Without them the extraction, standardisation, S1 and the training cells cannot be re-run from this folder. The scripts, the cell code and the per-cell outputs are here.
-* **`english_refs.json`** (the SP-10 reference sentences): the copy-rate part of `verify_secondary_numbers.py` and the floor-baseline scripts need it. Create `pilot/sp10_full_rerun/kaggle_dataset_rtm_c/` and place it there as `english_refs.json` (a JSON map from clip id to English sentence; 1,186 entries: 830 train, 142 dev, 214 test).
-* **Anything that reproduces the SP-10 data.** No videos, no pose arrays, no reference or training sentences, no clip-id lists, no per-clip tables, and no saved model translations (they are largely copies of SP-10 sentences). Per-cell results keep only scores and training statistics. The dataset belongs to Spreadthesign / the European Sign Language Centre and its authors; obtain it from the original source. Scripts that need the translations or sentences (rescoring, floor baselines, copy rates, the clip-level framing check) cannot be re-run from this copy; their output files in `rtm_analysis/` are included.
-* **Files the scripts expect but that are not shipped** (dataset material or runtime files from the Kaggle runs): `english_refs.json`, the pose arrays, `rtm_meta.json`, the clip-level `manifest.json`, `clip_table.csv`, `dropped.csv`, and `rtm_analysis/rtm_random_hyps.json` (regenerated by `floor_table.py`). Their absence only affects re-running those scripts; the output files of those scripts are included.
-* **The BLEURT-20 checkpoint**: BLEURT scores are read from `rtm_analysis/rtm_bleurt_cells.json` and were not recomputed.
-* **Training is not bit-reproducible.** The paper itself reports that a same-seed rerun on a second account gave 0 of 30 identical cells (per-cell chrF difference SD 0.87). Re-running the training will give numbers close to, not equal to, the stored ones. What this release provides is the code that was run, the per-cell outputs it produced, and the scripts that turn those outputs into the reported statistics.
-
-## Rounds in the paper and where they come from
-
-| Round | Poses | Cell code | Result folder |
-|---|---|---|---|
-| A | MediaPipe, all clips | `e2_cell.py` (+ `pilot/pilot_pipeline_slim2.py`, `pilot/sp10_driver_seedfix.py`) | `e2_outputs/scratch_s0/` |
-| B | RTMPose, cleaned, 60 epochs | `e2_rtm_cell.py` | `e2_outputs/rtm_scratch_a/`, `rtm_scratch_b_k/` |
-| C seed 0 | RTMPose, 100 epochs, z-score | `e3_rtm_cell.py` | `e2_outputs/rtm2_s1_c/`, `rtm2_s2_c/` |
-| C seed 1 (confirmatory) | same | `e3_rtm_cell.py` | `e2_outputs/rtm2_sa_a/`, `rtm2_sb_b_k/`, `rtm2_sc_c/` |
-| Pretrained arm seed 0 / control seed 0 | RTMPose, Uni-Sign ST-GCN | `e2_rtm_cell.py` | `e2_outputs/rtm_uni_a/`, `rtm_uni_b_k/` |
-| Pretrained seeds 1, 2, 3 / control seed 1 | same | `e3_rtm_cell.py` | `e2_outputs/rtm2_ua_c/`, `rtm2_uc_c/` (and `rtm2_uc_a/`, an independent replicate run of seed 2 on a second account: it is the same-seed rerun in the paper and is not mixed into the seed-2 cells), `rtm2_ub_c/`, `rtm2_ud_c/` |
-
-## Third-party terms
-
-The SP-10 dataset, RTMPose/rtmlib, Uni-Sign and T5 have their own terms.
+The SP-10 videos, poses and sentences are not included; SP-10 is available from its authors (Yin et al., 2022, github.com/MLSLT/SP-10). SP-10, RTMPose, Uni-Sign and T5 have their own terms.
