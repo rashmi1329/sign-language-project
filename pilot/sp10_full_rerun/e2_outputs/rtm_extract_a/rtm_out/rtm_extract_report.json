@@ -1,0 +1,61 @@
+{
+ "mode": "lightweight",
+ "langs": [
+  "zh",
+  "uk",
+  "ru",
+  "bg",
+  "is"
+ ],
+ "clips_indexed": 5875,
+ "clips_extracted": 5875,
+ "failures": 0,
+ "per_language": {
+  "zh": {
+   "indexed": 1183,
+   "extracted": 1183,
+   "mean_secs": 2.87,
+   "frames_no_person": 0,
+   "WxH": [
+    "320x240"
+   ]
+  },
+  "uk": {
+   "indexed": 1181,
+   "extracted": 1181,
+   "mean_secs": 2.88,
+   "frames_no_person": 0,
+   "WxH": [
+    "320x240"
+   ]
+  },
+  "ru": {
+   "indexed": 1183,
+   "extracted": 1183,
+   "mean_secs": 2.86,
+   "frames_no_person": 0,
+   "WxH": [
+    "320x240"
+   ]
+  },
+  "bg": {
+   "indexed": 1164,
+   "extracted": 1164,
+   "mean_secs": 2.9,
+   "frames_no_person": 0,
+   "WxH": [
+    "320x240"
+   ]
+  },
+  "is": {
+   "indexed": 1164,
+   "extracted": 1164,
+   "mean_secs": 2.85,
+   "frames_no_person": 0,
+   "WxH": [
+    "320x240"
+   ]
+  }
+ },
+ "wall_h": 1.22
+}

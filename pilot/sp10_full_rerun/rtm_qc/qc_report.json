@@ -1,0 +1,146 @@
+{
+ "structural": {
+  "zh": {
+   "n_k": 1183,
+   "n_s": 1183,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "uk": {
+   "n_k": 1181,
+   "n_s": 1181,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "ru": {
+   "n_k": 1183,
+   "n_s": 1183,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "bg": {
+   "n_k": 1164,
+   "n_s": 1164,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "is": {
+   "n_k": 1164,
+   "n_s": 1164,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "de": {
+   "n_k": 1157,
+   "n_s": 1157,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "it": {
+   "n_k": 1173,
+   "n_s": 1173,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "sv": {
+   "n_k": 1184,
+   "n_s": 1184,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "lt": {
+   "n_k": 1166,
+   "n_s": 1166,
+   "keys_match": true,
+   "meta_match": true
+  },
+  "en": {
+   "n_k": 1186,
+   "n_s": 1186,
+   "keys_match": true,
+   "meta_match": true
+  }
+ },
+ "n_clips": 11741,
+ "issue_counts": {
+  "wrist_jump": 5,
+  "huge_signer": 1,
+  "no_hand_visible": 1,
+  "body_conf_low": 1,
+  "multi_person": 2
+ },
+ "n_flagged": 8,
+ "dup_groups": 74,
+ "dup_cross_lang": 0,
+ "split_counts": {
+  "zh": {
+   "dev": 142,
+   "test": 211,
+   "train": 830
+  },
+  "uk": {
+   "dev": 142,
+   "test": 209,
+   "train": 830
+  },
+  "ru": {
+   "dev": 142,
+   "test": 211,
+   "train": 830
+  },
+  "bg": {
+   "dev": 142,
+   "test": 192,
+   "train": 830
+  },
+  "is": {
+   "dev": 142,
+   "test": 192,
+   "train": 830
+  },
+  "de": {
+   "dev": 142,
+   "test": 185,
+   "train": 830
+  },
+  "it": {
+   "dev": 142,
+   "test": 201,
+   "train": 830
+  },
+  "sv": {
+   "dev": 142,
+   "test": 212,
+   "train": 830
+  },
+  "lt": {
+   "dev": 142,
+   "test": 194,
+   "train": 830
+  },
+  "en": {
+   "dev": 142,
+   "test": 214,
+   "train": 830
+  }
+ },
+ "eta2_by_language": {
+  "frames": 0.07101322576092164,
+  "sh_px": 0.528162497786057,
+  "ok_body": 0.34271092420954186,
+  "ok_face": 0.0009018009658159561,
+  "ok_lh": 0.27691099000987895,
+  "ok_rh": 0.4681306008030521,
+  "vis_lh": 0.24898130898794932,
+  "vis_rh": 0.40272902972442837,
+  "wrist_out_l": 0.34925108087570716,
+  "wrist_out_r": 0.26645440866272846,
+  "wrist_mot": 0.07378182002374527,
+  "mot_all": 0.11103701263132376,
+  "wrist_y_mean": 0.32469140309943556,
+  "lr_ok": NaN
+ },
+ "lang_id_acc_from_framing_features": 0.7963541700662067,
+ "chance": 0.1,
+ "id_collisions_across_splits": 0
+}

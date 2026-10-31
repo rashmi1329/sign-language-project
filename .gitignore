@@ -1,0 +1,11 @@
+data/
+__pycache__/
+*.pyc
+
+# never commit dataset material
+english_refs.json
+*.npz
+*.npy
+*.pt
+*.mp4
+poses_*

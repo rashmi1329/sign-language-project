@@ -1,0 +1,7 @@
+train sentences 830 unique texts 830; test refs whose text also occurs in train: 0 of 214 (0.0%)
+arm                                      hyps verbatim train    exactly right
+RTM scratch v2 (100 ep, scaling)         1990          38.3%             0.1%
+RTM scratch frozen (60 ep)               1990          83.8%             0.0%
+MediaPipe scratch (60 ep)                2021          58.4%             0.1%
+RTM pretrained (seeds 0-3)               7960           8.5%             0.3%
+RTM random-init control (seed 0)         1990          47.6%             0.2%

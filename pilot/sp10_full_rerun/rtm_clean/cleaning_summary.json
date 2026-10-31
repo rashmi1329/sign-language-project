@@ -1,0 +1,144 @@
+{
+ "note": "Per-clip lists (clip ids, dropped clips, per-clip features) are not part of this public copy; only counts are given.",
+ "rules": {
+  "drop_exact_duplicate_groups": "all members (footage identical, labels differ)",
+  "drop_frames_gt": 600,
+  "thr": 0.3,
+  "normalisation": "Uni-Sign load_part_kp/crop_scale port (rtm_std_lib.py)"
+ },
+ "src_sha256": {
+  "zh": "8b9e3e932444b5e4d30e0c15d9bfe40e6ecbb1d38ea75049c5b9e122fb107850",
+  "uk": "fac24bf66a7b2005412fe84ba3a9d2b01e2606a6f17c421c1fbd7cf26a1c626d",
+  "ru": "bb63e1a492c3f1b030b2132441c11ff02c3306960f586e6e7c3287e252cda646",
+  "bg": "046f75275fbec588d1eef80069d0ea7126af902c279a5b04f97325fb02b9395e",
+  "is": "611539f1af68fba0082b0706477c3ba5ab9ca4ea1584f3eb27fbc2af1bb74fb1",
+  "de": "1981757e3f3835024f993119d1bf67bc95ac0a151f1151436b0df52174f142dd",
+  "it": "7abcd58647247754fe043d3282378232cece3327f4b1179a272e181426ae18c2",
+  "sv": "f4b553664e4d8c2ea8a607f7183f23d888eaa555c352333871c1924549b35fd2",
+  "lt": "6a7fac9aaa17842fdaff3cfc012c1b3ccd7c343850395007a355eefb423a5356",
+  "en": "e7b1e6013895fcb880bd51f0aa7f509bbfb9d03391d2e257bbb719ee998a0842"
+ },
+ "languages": {
+  "zh": {
+   "kept": 1179,
+   "splits": {
+    "dev": 141,
+    "test": 211,
+    "train": 827
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 4
+   }
+  },
+  "uk": {
+   "kept": 1162,
+   "splits": {
+    "dev": 139,
+    "test": 206,
+    "train": 817
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 19
+   }
+  },
+  "ru": {
+   "kept": 1177,
+   "splits": {
+    "dev": 141,
+    "test": 209,
+    "train": 827
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 6
+   }
+  },
+  "bg": {
+   "kept": 1091,
+   "splits": {
+    "dev": 132,
+    "test": 181,
+    "train": 778
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 73
+   }
+  },
+  "is": {
+   "kept": 1148,
+   "splits": {
+    "dev": 141,
+    "test": 188,
+    "train": 819
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "over_600_frames": 6,
+    "duplicate_footage": 10
+   }
+  },
+  "de": {
+   "kept": 1143,
+   "splits": {
+    "dev": 141,
+    "test": 181,
+    "train": 821
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 14
+   }
+  },
+  "it": {
+   "kept": 1157,
+   "splits": {
+    "dev": 140,
+    "test": 196,
+    "train": 821
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 16
+   }
+  },
+  "sv": {
+   "kept": 1178,
+   "splits": {
+    "dev": 142,
+    "test": 211,
+    "train": 825
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 6
+   }
+  },
+  "lt": {
+   "kept": 1160,
+   "splits": {
+    "dev": 141,
+    "test": 193,
+    "train": 826
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 6
+   }
+  },
+  "en": {
+   "kept": 1184,
+   "splits": {
+    "dev": 142,
+    "test": 214,
+    "train": 828
+   },
+   "zero_scale_clips": 0,
+   "dropped_by_reason": {
+    "duplicate_footage": 2
+   }
+  }
+ }
+}

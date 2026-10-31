@@ -1,0 +1,38 @@
+{
+ "choice": "zscore",
+ "mean_dev_chrf": {
+  "none": 13.66275,
+  "part": 16.582,
+  "zscore": 18.022499999999997
+ },
+ "per_language_dev_chrf": {
+  "none": {
+   "de": 14.7,
+   "zh": 12.246,
+   "is": 12.593,
+   "en": 15.112
+  },
+  "part": {
+   "de": 16.124,
+   "zh": 17.298,
+   "is": 16.2,
+   "en": 16.706
+  },
+  "zscore": {
+   "de": 17.205,
+   "zh": 20.169,
+   "is": 16.548,
+   "en": 18.168
+  }
+ },
+ "languages": [
+  "is",
+  "en",
+  "de",
+  "zh"
+ ],
+ "seed": 0,
+ "epochs": 100,
+ "rule": "highest mean dev chrF over is,en,de,zh (one seed, 100 epochs); zscore if no scaling has all four languages",
+ "complete": true
+}
