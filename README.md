@@ -17,7 +17,6 @@ We use SP-10, a corpus of ten sign languages signing the same English sentences.
    * `pilot/sp10_full_rerun/e2_outputs/`: per-cell scores, one folder per run.
    * `pilot/sp10_full_rerun/rtm_analysis/`: outputs of the statistics scripts.
    * `pilot/`: Round A (MediaPipe) code and notebooks.
-   * `docs/analysis_plan_rtm.md`: the analysis plan fixed before the RTMPose runs.
    * `make_paper_figures.py` and `paper_figures_as_in_manuscript/`: the figures.
    * `MANIFEST_SHA256.txt`: checksum of every file.
 

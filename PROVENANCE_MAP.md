@@ -7,6 +7,8 @@ Status codes used in the last column:
 * **O** = checked against the stored output file only (the script was not re-run, or cannot be re-run from this folder).
 * **X** = cannot be checked from this folder (needs data or a model that is not shipped), or no script was found.
 
+Note: `e2_cell.py` and the Round A notebook `e2_notebooks/e2_scratch_s0.ipynb` were trimmed for this copy: an unused model option was removed. The scratch-arm code path is unchanged, but the file's SHA-256 (`5448e1ee...`) differs from the one used at run time (`3dfc49b2...`).
+
 Paths are relative to `pilot/sp10_full_rerun/` unless they start with `docs/` or `paper_figures`. "cells" = per-cell result JSONs in `e2_outputs/<run>/` (each holds train loss, chrF, BLEU, dev scores, seconds and peak GPU memory; the saved translations and test-clip ids that the original files also held are not part of this copy).
 
 ## Section 3, design
@@ -18,10 +20,9 @@ Paths are relative to `pilot/sp10_full_rerun/` unless they start with `docs/` or
 | Standardisation (Uni-Sign rules), 69 points x 48 frames x 4 channels | `rtm_std_lib.py`, `rtm_data.py` | code | O (code read against the text) |
 | Dev sweep of input scaling: 18.02 / 16.58 / 13.66 | `e3_rtm_cell.py` (sweep mode) | `e2_outputs/rtm2_s1_c/scale_choice.json` | O |
 | Architecture and training settings (4 layers, 512, 8 heads, FF 2048, dropout 0.2, AdamW 3e-4, wd 0.01, one-cycle, batch 16, clip 1.0, beam 4, 32 tokens, augmentation ranges, body-only shift) | `e3_rtm_cell.py` (lines 94-155) | code; `sha256(e3_rtm_cell.py)` = 5ce2fb16a70a... | O |
-| S1 definition (Algorithm 1); S1_body, S1_hands | `rtm_s1.py`, `rtm_dtw_masked.c` | `similarity_rtm.json` (sha256 b4d584ec..., equals the hash written in `docs/analysis_plan_rtm.md`) | O |
+| S1 definition (Algorithm 1); S1_body, S1_hands | `rtm_s1.py`, `rtm_dtw_masked.c` | `similarity_rtm.json` (sha256 b4d584ec...) | O |
 | S1 computed before any training (Rounds B, C) | `rtm_s1.py` | file times: `similarity_rtm.json` 2026-10-19 05:50 UTC; first Round B result 2026-10-19 15:20 UTC (local file times) | O |
 | Round A S1 (MediaPipe) | `pilot/sp10_fetch_rest.py` (Kaggle step 2) | `full_poses/notebooka9f823024d.log`; `s1_new_from_log.json` | R (45 of 45 values equal the log) |
-| Confirmatory plan, SHA-256 d65e325d, mtime 2026-10-21 05:27 UTC, first seed-1 file 07:55 UTC | - | `docs/analysis_plan_rtm.md`; result-file times | O (hash and times reproduce; self-reported) |
 
 ## Table 2 and Table 3 (grids; scores and gain)
 

@@ -18,24 +18,21 @@ Kaggle notebooks `pilot/sp10_run2_data.ipynb` (download + poses of the clips tha
 `rtm_quality_check.py` -> `rtm_qc/` (structure, duplicate footage, framing features); standardisation and cleaning `rtm_std_lib.py`, `rtm_standardise.py`, `rtm_std_merge.py` -> `rtm_clean/cleaning_summary.json` (counts per language; the per-clip lists are not included); loader `rtm_data.py`.
 
 ## Step 5. Similarity S1 (Rounds B, C)
-`rtm_s1.py` + `rtm_dtw_masked.c` -> `similarity_rtm.json` (sha256 b4d584ec...). Computed before any RTMPose training; hash recorded in `docs/analysis_plan_rtm.md`.
+`rtm_s1.py` + `rtm_dtw_masked.c` -> `similarity_rtm.json` (sha256 b4d584ec...). Computed before any RTMPose training.
 
-## Step 6. Analysis plan
-`docs/analysis_plan_rtm.md`: frozen plan (2026-10-19), v2 deviation (2026-10-20), confirmatory seed (2026-10-21, hash d65e325d).
-
-## Step 7. Training cells (Kaggle)
+## Step 6. Training cells (Kaggle)
 Round B and pretrained seed 0: `e2_rtm_cell.py` (+ `rtm_data.py`; the Uni-Sign encoder file `stgcn_uni.py` it imports is not included, see README). Round C and later seeds: `e3_rtm_cell.py`. Every run folder in `e2_outputs/` has the per-cell scores; the first Round C run also has the scaling sweep and `scale_choice.json`. The saved translations and test-clip lists are not included.
 
-## Step 8. Scoring
+## Step 7. Scoring
 chrF and BLEU (sacreBLEU) are computed inside the cell. BLEURT-20-D12: `score_bleurt.py` (all cells), `score_nn_bleurt.py`, `score_random_bleurt.py` -> `rtm_analysis/rtm_bleurt_cells.json`, `rtm_nn_bleurt.json`, `rtm_random_bleurt.json`.
 
-## Step 9. Statistics
+## Step 8. Statistics
 `analyze_rtm.py` (Round B), `analyze_rtm2.py` (Round C seed 0, pretrained arm), `roundA_tests.py` (Round A), `analyze_bleurt.py`, `target_adjusted.py`, `two_way_hub.py`, `holm_family.py`, `seed1_confirmatory.py`, `seed1_pooled.py`, `pooled_variants.py`, `power_rtm.py`, `power_general.py`, `extend_rtm_cpu.py`, `extend_rtm_memorisation.py`, `common_sentences.py`, `target_difficulty.py`; floors `nn_baseline.py`, `floor_table.py`. Outputs in `rtm_analysis/`.
 
-## Step 10. Figures
+## Step 9. Figures
 `make_paper_figures.py` (reads the cells and the files in `rtm_analysis/`) -> `paper_figures/` (created when run). The four images exactly as used in the manuscript are in `paper_figures_as_in_manuscript/`.
 
-## Step 11. Recomputing Table 3, the R^2 values and the secondary numbers
+## Step 10. Recomputing Table 3, the R^2 values and the secondary numbers
 `verify_headline_numbers.py` and `verify_secondary_numbers.py` recompute them from the per-cell files and print them next to the paper's values.
 
 ## Rounds in the paper and where they come from
